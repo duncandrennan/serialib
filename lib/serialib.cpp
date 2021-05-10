@@ -29,6 +29,7 @@ This is a licence-free software, it can be used by anyone who try to build a bet
 serialib::serialib()
 {
 #if defined (_WIN32) || defined( _WIN64)
+    hSerial = INVALID_HANDLE_VALUE;
     // Set default value for RTS and DTR (Windows only)
     currentStateRTS=true;
     currentStateDTR=true;
@@ -223,7 +224,11 @@ char serialib::openDevice(const char *Device,const unsigned int Bauds)
 void serialib::closeDevice()
 {
 #if defined (_WIN32) || defined( _WIN64)
-    CloseHandle(hSerial);
+    if (hSerial != INVALID_HANDLE_VALUE)
+    {
+        CloseHandle(hSerial);
+        hSerial = INVALID_HANDLE_VALUE;
+    }
 #endif
 #if defined (__linux__) || defined(__APPLE__)
     close (fd);
