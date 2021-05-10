@@ -127,7 +127,7 @@ public:
 
 
     // Empty the received buffer
-    char    flushReceiver();
+    int    flushReceiver();
 
     // Return the number of bytes in the received buffer
     int     available();

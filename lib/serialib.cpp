@@ -589,7 +589,7 @@ int serialib::readBytes (void *buffer,unsigned int maxNbBytes,unsigned int timeO
     \return If the function succeeds, the return value is nonzero.
             If the function fails, the return value is zero.
 */
-char serialib::flushReceiver()
+int serialib::flushReceiver()
 {
 #if defined (_WIN32) || defined(_WIN64)
     // Purge receiver
